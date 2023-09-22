@@ -1,3 +1,10 @@
+/*
+ * @Author: zhouxishun
+ * @Date: 2023-09-13 09:11:38
+ * @LastEditors: zhouxishun
+ * @LastEditTime: 2023-09-22 18:34:24
+ * @Description: 
+ */
 import { BasePage, Material } from "@octopus/demo-page";
 import { Button, message, Modal } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
@@ -16,7 +23,7 @@ import {
 import { AssetPackage } from "@octopus/model";
 import { DesignerPluginInstance } from "@octopus/engine/dist/plugins/Designer/type";
 
-const { DisplaySourceSchema, DEFAULT_PLUGIN_LIST } = plugins;
+const { DisplaySourceSchema } = plugins;
 
 const beforeInitRender: LayoutPropsType["beforeInitRender"] = async ({ iframe }) => {
   const subWin = iframe.getWindow();
@@ -42,6 +49,7 @@ const customRender: LayoutPropsType["customRender"] = async ({
   const IframeReactDOM = iframeWindow.ReactDOMClient!;
   const CRender = iframeWindow.CRender!;
 
+  console.log('CRender', CRender)
   // 注入组件物料资源
   const assetLoader = new CRender.AssetLoader(assets, {
     window: iframeContainer.getWindow()!
@@ -253,18 +261,17 @@ export const App = () => {
   }
   return (
     <Engine
-      plugins={DEFAULT_PLUGIN_LIST}
       schema={page}
       material={[...InnerComponentMeta, ...Material]}
       assets={[]}
       assetPackagesList={assetPackagesList}
       onReady={onReady}
       beforePluginRun={({ pluginManager }) => {
-        pluginManager.customPlugin("Designer", (pluginInstance) => {
-          pluginInstance.ctx.config.beforeInitRender = beforeInitRender;
-          pluginInstance.ctx.config.customRender = customRender;
-          return pluginInstance;
-        });
+        // pluginManager.customPlugin("Designer", (pluginInstance) => {
+        //   pluginInstance.ctx.config.beforeInitRender = beforeInitRender;
+        //   pluginInstance.ctx.config.customRender = customRender;
+        //   return pluginInstance;
+        // });
       }}
     />
   );
