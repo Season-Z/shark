@@ -1,6 +1,12 @@
+/*
+ * @Author: zhouxishun
+ * @Date: 2023-09-13 09:11:38
+ * @LastEditors: zhouxishun
+ * @LastEditTime: 2023-09-28 11:07:46
+ * @Description: 
+ */
 import { useEffect, useState } from 'react';
 import { ReactAdapter, Render, useRender } from '@octopus/render';
-import * as components from 'antd';
 
 export const Preview = () => {
   const [page, setPage] = useState();
@@ -18,7 +24,7 @@ export const Preview = () => {
   }
   return (
     <div className="App" style={{ overflow: 'auto', height: '100%' }}>
-      <Render page={page} components={components} render={renderHandle as any} adapter={ReactAdapter} />
+      <Render page={page} render={renderHandle as any} adapter={ReactAdapter} />
     </div>
   );
 };

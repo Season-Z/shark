@@ -2,21 +2,18 @@
  * @Author: zhouxishun
  * @Date: 2023-09-13 09:11:38
  * @LastEditors: zhouxishun
- * @LastEditTime: 2023-09-22 18:34:24
+ * @LastEditTime: 2023-09-28 15:24:51
  * @Description: 
  */
-import { BasePage, Material } from "@octopus/demo-page";
+import { BasePage } from "@octopus/demo-page";
 import { Button, message, Modal } from "antd";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ReactDOMClient from "react-dom/client";
 import "@octopus/engine/dist/style.css";
 import {
   Engine,
   EnginContext,
-  InnerComponentMeta,
-  collectVariable,
-  flatObject,
   LayoutPropsType,
   plugins
 } from "@octopus/engine";
@@ -49,22 +46,16 @@ const customRender: LayoutPropsType["customRender"] = async ({
   const IframeReactDOM = iframeWindow.ReactDOMClient!;
   const CRender = iframeWindow.CRender!;
 
-  console.log('CRender', CRender)
   // 注入组件物料资源
   const assetLoader = new CRender.AssetLoader(assets, {
     window: iframeContainer.getWindow()!
   });
   assetLoader
     .onSuccess(() => {
-      // 从子窗口获取物料对象
-      const componentCollection = collectVariable(assets, iframeWindow);
-      const components = flatObject(componentCollection);
-
       const App = IframeReact?.createElement(CRender.DesignRender, {
         adapter: CRender?.ReactAdapter,
         page: page,
         pageModel: pageModel,
-        components,
         onMount: (designRenderInstance) => {
           ready(designRenderInstance);
         }
@@ -252,7 +243,7 @@ export const App = () => {
         >
           Save
         </Button>
-      </div>
+      </div> as any
     );
   }, []);
 
@@ -262,16 +253,14 @@ export const App = () => {
   return (
     <Engine
       schema={page}
-      material={[...InnerComponentMeta, ...Material]}
-      assets={[]}
       assetPackagesList={assetPackagesList}
       onReady={onReady}
       beforePluginRun={({ pluginManager }) => {
-        // pluginManager.customPlugin("Designer", (pluginInstance) => {
-        //   pluginInstance.ctx.config.beforeInitRender = beforeInitRender;
-        //   pluginInstance.ctx.config.customRender = customRender;
-        //   return pluginInstance;
-        // });
+        pluginManager.customPlugin("Designer", (pluginInstance) => {
+          pluginInstance.ctx.config.beforeInitRender = beforeInitRender;
+          pluginInstance.ctx.config.customRender = customRender;
+          return pluginInstance;
+        });
       }}
     />
   );
