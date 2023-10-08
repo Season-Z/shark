@@ -1,10 +1,3 @@
-/*
- * @Author: zhouxishun
- * @Date: 2023-09-13 09:11:38
- * @LastEditors: zhouxishun
- * @LastEditTime: 2023-10-07 11:18:44
- * @Description:
- */
 import { BasePage } from "@octopus/demo-page";
 import { useCallback, useEffect, useState } from "react";
 import { Engine, EnginContext } from "@octopus/engine";

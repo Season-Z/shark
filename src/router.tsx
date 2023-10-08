@@ -6,13 +6,18 @@
  * @Description:
  */
 import { createHashRouter } from "react-router-dom";
-import App from "./page/playgroud";
+import Dashboard from "./page/dashboard";
+import Playground from "./page/playground";
 import Preview from "./page/previews";
 
 export const router: any = createHashRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Dashboard />,
+  },
+  {
+    path: "/",
+    element: <Playground />,
   },
   {
     path: "/preview",
