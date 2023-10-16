@@ -1,12 +1,20 @@
 import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
-import { Avatar, Button, Card, Divider } from "antd";
+import { Avatar, Button, Card, Divider, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import CreateModal from "./components/create-modal";
 import { useState } from "react";
+import { useFetch } from "@/service/request";
+import * as api from "@/service/api";
+import ProjectList from "./components/project-list";
 
 const Dashboard = () => {
   const router = useNavigate();
   const [showModal, setShowModal] = useState(false);
+
+  const { loading, data } = useFetch({
+    url: api.project,
+    method: "get",
+  });
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -26,15 +34,7 @@ const Dashboard = () => {
       </header>
       <Divider />
 
-      <main className="pt-[36px]">
-        <Card
-          style={{ width: 300 }}
-          cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-          actions={[<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />]}
-        >
-          <Card.Meta avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />} title="Card title" description="This is the description" />
-        </Card>
-      </main>
+      <main className="pt-[36px]">{loading ? <Spin spinning /> : <ProjectList projectList={data} />}</main>
       {showModal && <CreateModal visible={showModal} close={closeModal} />}
     </div>
   );

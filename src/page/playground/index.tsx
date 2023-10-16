@@ -1,10 +1,10 @@
-import { BasePage } from "@octopus/demo-page";
 import { useCallback, useEffect, useState } from "react";
 import { Engine, EnginContext } from "@octopus/engine";
 import { DesignerPluginInstance } from "@octopus/engine/dist/plugins/Designer/type";
 import HeaderView from "./components/header-view";
 import { assetPackagesList, assets, beforeInitRender, customRender } from "./config";
 import "@octopus/engine/dist/style.css";
+import { BasePage } from "@/demo/base-page";
 
 const App = () => {
   const [ready, setReady] = useState(false);

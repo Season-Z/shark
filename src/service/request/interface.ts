@@ -19,17 +19,12 @@ export interface CancelRequestSource {
 }
 
 export interface FetchResponse<T> {
-  /** @param  */
+  /** @param 编码 */
   code: string;
-  msg: string;
-  data: T;
-  /** @param 异常堆栈 */
-  stacktrace?: string;
-  /** @param 报错请求URL */
-  url?: string;
-  /** @param 报错建议（随着ErrorCode整改推进会补全） */
-  suggestion?: string;
-  errorCode: string;
+  message: string;
+  result: T;
+  status: number;
+  success: boolean;
 }
 
 // 重写返回类型

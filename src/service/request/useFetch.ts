@@ -6,11 +6,11 @@
  * @Description:hook发起请求。默认绑定了监听 config 入参的变化，config 变化会触发接口的请求
  */
 
-import useDepEffect from '@/hooks/useDepEffect';
-import useMount from '@/hooks/useMount';
-import { useCallback, useRef, useState } from 'react';
-import { FetchOptions, FetchRequestConfig, FetchResponse } from './interface';
-import request from './request';
+import useDepEffect from "@/hooks/useDepEffect";
+import useMount from "@/hooks/useMount";
+import { useCallback, useRef, useState } from "react";
+import { FetchOptions, FetchRequestConfig, FetchResponse } from "./interface";
+import request from "./request";
 
 /**
  * @description: hook请求
@@ -35,7 +35,7 @@ const useFetch = <D = any, T = any>(config: FetchRequestConfig<D, T>, options?: 
       request
         .request<FetchResponse<T>>({ ...configRef.current, data })
         .then((res) => {
-          setData(res.data);
+          setData(res.result);
           resolve(res);
           return res;
         })

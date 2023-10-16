@@ -113,6 +113,10 @@ const request = new Request({
       if (method === "get" || method === "GET") {
         config.params = config.data;
       }
+
+      const token = window.localStorage.getItem("token");
+      config.headers.Authorization = token;
+
       return config;
     },
     // 响应拦截器

@@ -1,8 +1,8 @@
-import { Form, Input, Modal, Radio } from "antd";
+import { Form, Input, Modal, Radio, message } from "antd";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 import { fetch } from "@/service/request";
 import * as api from "@/service/api";
+import { useNavigate } from "react-router-dom";
 
 interface CreateModalProps {
   visible: boolean;
@@ -25,21 +25,20 @@ const CreateModal: FC<CreateModalProps> = (props) => {
 
   const confirm = async () => {
     const data = await form.validateFields();
-    console.log(data);
 
-    const result = await fetch({ url: api.createProject, method: "post", data });
-    console.log("result", result);
+    const { result, success } = await fetch({ url: api.project, method: "post", data });
 
-    if (result.success) {
-      // router.
+    if (success) {
+      message.success("创建工程成功！");
+      close();
+
+      router(`/playground?projectId=${result.projectId}&projectName=${result.projectName}`);
     }
-
-    close();
   };
 
   return visible ? (
     <Modal title="新建工程" open={visible} onOk={confirm} onCancel={close} okText="确定" cancelText="取消">
-      <Form form={form} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} style={{ maxWidth: 600 }} initialValues={{ remember: true }}>
+      <Form form={form} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }} style={{ maxWidth: 600 }} initialValues={{ remember: true }}>
         <Form.Item<FieldType> label="工程类型" name="projectType" rules={[{ required: true, message: "请选择工程类型!" }]}>
           <Radio.Group
             options={[

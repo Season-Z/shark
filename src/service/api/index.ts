@@ -1,1 +1,5 @@
-export const createProject = "/project";
+export const project = "/project";
+
+export const createUser = "user";
+
+export const login = "/user/login";
