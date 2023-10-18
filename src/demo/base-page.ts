@@ -1,4 +1,4 @@
-import { CPageDataType } from "@octopus/model";
+import { CPageDataType } from "@zxscls/model";
 
 export const BasePage: CPageDataType = {
   version: "1.0.0",

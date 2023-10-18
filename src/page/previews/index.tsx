@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ReactAdapter, Render, useRender } from "@octopus/render";
+import { ReactAdapter, Render, useRender } from "@zxscls/render";
 
 const Preview = () => {
   const [page, setPage] = useState();

@@ -1,6 +1,6 @@
 import { Button, message, Modal } from "antd";
 import { FC } from "react";
-import { EnginContext, plugins } from "@octopus/engine";
+import { EnginContext, plugins } from "@zxscls/engine";
 
 const { DisplaySourceSchema } = plugins;
 
@@ -55,11 +55,6 @@ const HeaderView: FC<{ ctx: EnginContext }> = (props) => {
       <Button
         style={{ marginRight: "10px" }}
         onClick={() => {
-          let src = "/#/preview";
-          if (location.href.includes("hlerenow")) {
-            src = "/chameleon/#/preview";
-          }
-
           Modal.info({
             closable: true,
             icon: null,
@@ -75,7 +70,7 @@ const HeaderView: FC<{ ctx: EnginContext }> = (props) => {
                     marginRight: "30px",
                   }}
                   onClick={() => {
-                    window.open(src);
+                    window.open("/preview");
                   }}
                 >
                   Open in new window
@@ -97,7 +92,7 @@ const HeaderView: FC<{ ctx: EnginContext }> = (props) => {
                     borderRadius: "4px",
                     overflow: "hidden",
                   }}
-                  src={src}
+                  src={"/preview"}
                 />
               </div>
             ),

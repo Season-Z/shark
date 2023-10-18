@@ -1,29 +1,28 @@
-import { MaterialType } from '@octopus/model';
+import { MaterialType } from "@zxscls/model";
 
 export const RowMeta: MaterialType = {
-  title: 'Row',
-  componentName: 'Row',
+  title: "Row",
+  componentName: "Row",
   npm: {
-    package: '@octopus/mock-material',
-    exportName: 'Row',
-    version: '1.0.0',
-    name: 'Row',
+    package: "@zxscls/mock-material",
+    exportName: "Row",
+    version: "1.0.0",
+    name: "Row",
   },
-  icon: 'https://alifd.oss-cn-hangzhou.aliyuncs.com/fusion-cool/icons/icon-light/ic_light_button.png',
+  icon: "https://alifd.oss-cn-hangzhou.aliyuncs.com/fusion-cool/icons/icon-light/ic_light_button.png",
   props: [
     {
-      name: 'style',
-      title: '样式',
-      valueType: 'object',
-      setters: ['JSONSetter'],
+      name: "style",
+      title: "样式",
+      valueType: "object",
+      setters: ["JSONSetter"],
     },
   ],
   snippets: [
     {
-      title: '行',
-      snapshot:
-        'https://alifd.oss-cn-hangzhou.aliyuncs.com/fusion-cool/icons/icon-light/ic_light_button.png',
-      category: 'HTML 元素',
+      title: "行",
+      snapshot: "https://alifd.oss-cn-hangzhou.aliyuncs.com/fusion-cool/icons/icon-light/ic_light_button.png",
+      category: "HTML 元素",
       schema: {
         props: {},
       },

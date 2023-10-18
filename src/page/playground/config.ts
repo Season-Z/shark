@@ -1,17 +1,10 @@
-/*
- * @Author: zhouxishun
- * @Date: 2023-10-07 11:06:53
- * @LastEditors: zhouxishun
- * @LastEditTime: 2023-10-07 11:17:55
- * @Description:
- */
-
 import React from "react";
 import ReactDOM from "react-dom";
 import ReactDOMClient from "react-dom/client";
-import "@octopus/engine/dist/style.css";
-import { LayoutPropsType } from "@octopus/engine";
-import { AssetPackage } from "@octopus/model";
+import "@zxscls/engine/dist/style.css";
+import { LayoutPropsType } from "@zxscls/engine";
+import { AssetPackage } from "@zxscls/model";
+import { DesignRender } from "@zxscls/render";
 
 export const assets: AssetPackage[] = [
   {
@@ -33,7 +26,7 @@ export const assets: AssetPackage[] = [
 
 export const assetPackagesList = [
   {
-    package: "@octopus/mock-material",
+    package: "@zxscls/mock-material",
     globalName: "antd",
     resources: [
       {
@@ -65,7 +58,8 @@ export const customRender: LayoutPropsType["customRender"] = async ({ iframe: if
   const iframeDoc = iframeContainer.getDocument()!;
   const IframeReact = iframeWindow.React!;
   const IframeReactDOM = iframeWindow.ReactDOMClient!;
-  const CRender = iframeWindow.CRender!;
+  // @ts-ignore
+  const CRender = iframeWindow.Render!;
 
   // 注入组件物料资源
   const assetLoader = new CRender.AssetLoader(assets, {
@@ -74,10 +68,11 @@ export const customRender: LayoutPropsType["customRender"] = async ({ iframe: if
   assetLoader
     .onSuccess(() => {
       const App = IframeReact?.createElement(CRender.DesignRender, {
+        // @ts-ignore
         adapter: CRender?.ReactAdapter,
         page: page,
         pageModel: pageModel,
-        onMount: (designRenderInstance) => {
+        onMount: (designRenderInstance: DesignRender) => {
           ready(designRenderInstance);
         },
       });

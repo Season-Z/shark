@@ -5,14 +5,14 @@
  * @LastEditTime: 2023-10-03 21:43:34
  * @Description:
  */
-import { MaterialType } from '@octopus/model';
-import { ButtonMeta } from './button';
+import { MaterialType } from "@zxscls/model";
+import { ButtonMeta } from "./button";
 // import { ColMeta } from './col';
 // import { InputMeta } from './input';
-import { ModalMeta } from './modal';
+import { ModalMeta } from "./modal";
 // import { DivMeta } from './native';
 // import { RowMeta } from './row';
-import { TableMeta } from './table';
-import { LayoutMeta } from './layout/index';
+import { TableMeta } from "./table";
+import { LayoutMeta } from "./layout/index";
 
 export const Material: MaterialType<any>[] = [TableMeta, ModalMeta, ButtonMeta, LayoutMeta];

@@ -1,144 +1,138 @@
-import { MaterialType } from '@octopus/model';
+import { MaterialType } from "@zxscls/model";
 
 export const TableMeta: MaterialType = {
-  title: 'Table',
-  componentName: 'Table',
+  title: "Table",
+  componentName: "Table",
   npm: {
-    name: 'MockMaterial',
-    package: '@octopus/mock-material',
-    exportName: 'Table',
-    version: '1.0.0',
+    name: "MockMaterial",
+    package: "@zxscls/mock-material",
+    exportName: "Table",
+    version: "1.0.0",
   },
   props: [
     {
-      name: 'name',
-      title: '表名',
-      valueType: 'string',
+      name: "name",
+      title: "表名",
+      valueType: "string",
       setters: [
-        'TextAreaSetter',
-        'StringSetter',
+        "TextAreaSetter",
+        "StringSetter",
         {
-          componentName: 'ArraySetter',
+          componentName: "ArraySetter",
           props: {
             item: {
               setters: [
                 {
-                  componentName: 'ShapeSetter',
+                  componentName: "ShapeSetter",
                   props: {
                     elements: [
                       {
-                        name: 'name',
-                        title: '列名',
-                        valueType: 'string',
-                        setters: ['StringSetter'],
+                        name: "name",
+                        title: "列名",
+                        valueType: "string",
+                        setters: ["StringSetter"],
                       },
                       {
-                        name: 'dataIndex',
-                        title: 'dataIndex',
-                        valueType: 'string',
-                        setters: ['StringSetter'],
+                        name: "dataIndex",
+                        title: "dataIndex",
+                        valueType: "string",
+                        setters: ["StringSetter"],
                       },
                       {
-                        name: 'filteredValue',
-                        title: '过滤值',
-                        valueType: 'array',
-                        setters: ['StringSetter'],
+                        name: "filteredValue",
+                        title: "过滤值",
+                        valueType: "array",
+                        setters: ["StringSetter"],
                       },
                     ],
                   },
                   initialValue: {},
                 },
-                'StringSetter',
+                "StringSetter",
                 {
-                  componentName: 'SelectSetter',
+                  componentName: "SelectSetter",
                   props: {
                     options: [
-                      { value: 'jack', label: 'Jack' },
-                      { value: 'lucy', label: 'Lucy' },
-                      { value: 'Yiminghe', label: 'yiminghe' },
-                      { value: 'disabled', label: 'Disabled', disabled: true },
+                      { value: "jack", label: "Jack" },
+                      { value: "lucy", label: "Lucy" },
+                      { value: "Yiminghe", label: "yiminghe" },
+                      { value: "disabled", label: "Disabled", disabled: true },
                     ],
                   },
                 },
-                'JSONSetter',
-                'FunctionSetter',
-                'ComponentSetter',
+                "JSONSetter",
+                "FunctionSetter",
+                "ComponentSetter",
               ],
-              initialValue: '',
+              initialValue: "",
             },
           },
           initialValue: [],
         },
         {
-          componentName: 'ExpressionSetter',
+          componentName: "ExpressionSetter",
           initialValue: [],
         },
       ],
     },
     {
-      name: 'selectSetter',
-      title: 'select',
-      valueType: 'string',
+      name: "selectSetter",
+      title: "select",
+      valueType: "string",
       setters: [
         {
-          componentName: 'SelectSetter',
+          componentName: "SelectSetter",
           props: {
             options: [
-              { value: 'jack', label: 'Jack' },
-              { value: 'lucy', label: 'Lucy' },
-              { value: 'Yiminghe', label: 'yiminghe' },
-              { value: 'disabled', label: 'Disabled', disabled: true },
+              { value: "jack", label: "Jack" },
+              { value: "lucy", label: "Lucy" },
+              { value: "Yiminghe", label: "yiminghe" },
+              { value: "disabled", label: "Disabled", disabled: true },
             ],
           },
         },
       ],
     },
     {
-      name: 'testArrayString',
-      title: '数组字符串',
-      valueType: 'array',
+      name: "testArrayString",
+      title: "数组字符串",
+      valueType: "array",
       setters: [
         {
-          componentName: 'ArraySetter',
+          componentName: "ArraySetter",
           props: {
             item: {
-              setters: [
-                'StringSetter',
-                'SelectSetter',
-                'JSONSetter',
-                'FunctionSetter',
-                'ComponentSetter',
-              ],
-              initialValue: '',
+              setters: ["StringSetter", "SelectSetter", "JSONSetter", "FunctionSetter", "ComponentSetter"],
+              initialValue: "",
             },
           },
           initialValue: [],
         },
         {
-          componentName: 'ExpressionSetter',
+          componentName: "ExpressionSetter",
           initialValue: [],
         },
-        'StringSetter',
-        'SelectSetter',
-        'JSONSetter',
-        'FunctionSetter',
-        'ComponentSetter',
+        "StringSetter",
+        "SelectSetter",
+        "JSONSetter",
+        "FunctionSetter",
+        "ComponentSetter",
       ],
     },
     {
-      name: 'pagination',
-      title: '分页',
-      valueType: 'object',
+      name: "pagination",
+      title: "分页",
+      valueType: "object",
       setters: [
         {
-          componentName: 'ShapeSetter',
+          componentName: "ShapeSetter",
           props: {
             elements: [
               {
-                name: 'current',
-                title: '当前页',
-                valueType: 'number',
-                setters: ['NumberSetter', 'ExpressionSetter'],
+                name: "current",
+                title: "当前页",
+                valueType: "number",
+                setters: ["NumberSetter", "ExpressionSetter"],
               },
             ],
           },
@@ -147,50 +141,50 @@ export const TableMeta: MaterialType = {
       ],
     },
     {
-      name: 'style',
-      title: '样式',
-      valueType: 'object',
-      setters: ['JSONSetter'],
+      name: "style",
+      title: "样式",
+      valueType: "object",
+      setters: ["JSONSetter"],
     },
     {
-      name: 'columns',
-      title: '数据列',
-      valueType: 'array',
+      name: "columns",
+      title: "数据列",
+      valueType: "array",
       setters: [
         {
-          componentName: 'ArraySetter',
+          componentName: "ArraySetter",
           props: {
             item: {
               setters: [
                 {
-                  componentName: 'ShapeSetter',
+                  componentName: "ShapeSetter",
                   props: {
                     elements: [
                       {
-                        name: 'title',
-                        title: '列名',
-                        valueType: 'string',
-                        setters: ['StringSetter', 'NumberSetter'],
+                        name: "title",
+                        title: "列名",
+                        valueType: "string",
+                        setters: ["StringSetter", "NumberSetter"],
                       },
                       {
-                        name: 'dataIndex',
-                        title: 'dataIndex',
-                        valueType: 'string',
-                        setters: ['StringSetter'],
+                        name: "dataIndex",
+                        title: "dataIndex",
+                        valueType: "string",
+                        setters: ["StringSetter"],
                       },
                       {
-                        name: 'render',
-                        title: '渲染组件',
-                        valueType: 'component',
-                        setters: ['ComponentSetter'],
+                        name: "render",
+                        title: "渲染组件",
+                        valueType: "component",
+                        setters: ["ComponentSetter"],
                       },
                       {
-                        name: 'filteredValue',
-                        title: '过滤值',
-                        valueType: 'array',
-                        setters: ['StringSetter'],
+                        name: "filteredValue",
+                        title: "过滤值",
+                        valueType: "array",
+                        setters: ["StringSetter"],
                         condition: (state: any) => {
-                          if (state.dataIndex === '1') {
+                          if (state.dataIndex === "1") {
                             return true;
                           }
                           return false;
@@ -200,66 +194,66 @@ export const TableMeta: MaterialType = {
                   },
                   initialValue: {},
                 },
-                'StringSetter',
-                'SelectSetter',
-                'JSONSetter',
-                'FunctionSetter',
-                'ComponentSetter',
+                "StringSetter",
+                "SelectSetter",
+                "JSONSetter",
+                "FunctionSetter",
+                "ComponentSetter",
               ],
               initialValue: {
-                title: 'Name',
-                dataIndex: 'Name',
-                filteredValue: '123',
+                title: "Name",
+                dataIndex: "Name",
+                filteredValue: "123",
               },
             },
           },
           initialValue: [],
         },
         {
-          componentName: 'ExpressionSetter',
+          componentName: "ExpressionSetter",
           initialValue: [],
         },
       ],
     },
 
     {
-      name: 'sorter',
-      title: '排序',
-      valueType: 'function',
-      setters: ['FunctionSetter', 'ExpressionSetter'],
+      name: "sorter",
+      title: "排序",
+      valueType: "function",
+      setters: ["FunctionSetter", "ExpressionSetter"],
     },
     {
-      name: 'title',
-      title: '表头',
-      valueType: 'component',
-      setters: ['ComponentSetter'],
+      name: "title",
+      title: "表头",
+      valueType: "component",
+      setters: ["ComponentSetter"],
     },
   ],
   snippets: [
     {
-      title: '表格',
-      snapshotText: 'Table',
-      category: '高级组件',
+      title: "表格",
+      snapshotText: "Table",
+      category: "高级组件",
       schema: {
         props: {
           data: [
             {
-              key: '1',
-              name: 'John Brown',
+              key: "1",
+              name: "John Brown",
               age: 32,
-              address: 'New York No. 1 Lake Park',
-              tags: ['nice', 'developer'],
+              address: "New York No. 1 Lake Park",
+              tags: ["nice", "developer"],
             },
           ],
           columns: [
             {
-              title: 'Name',
-              dataIndex: 'name',
-              key: 'name',
+              title: "Name",
+              dataIndex: "name",
+              key: "name",
             },
           ],
         },
-        children: ['I am a Div Table'],
+        children: ["I am a Div Table"],
       },
     },
   ],

@@ -1,5 +1,4 @@
-import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
-import { Avatar, Button, Card, Divider, Spin } from "antd";
+import { Button, Divider, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import CreateModal from "./components/create-modal";
 import { useState } from "react";
