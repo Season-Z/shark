@@ -1,8 +1,8 @@
-import { message } from "antd";
 import type { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import axios, { AxiosResponse } from "axios";
-import { axiosErrorMap, reqOptions } from "./config";
+import { reqOptions } from "./config";
 import type { CreateRequestConfig, RequestConfig, RequestInterceptors } from "./interface";
+import { Error } from "./error";
 
 class Request {
   // axios 实例
@@ -11,6 +11,8 @@ class Request {
   interceptorsObj?: RequestInterceptors<AxiosResponse>;
   // * 存放取消请求控制器Map
   abortControllerMap: Map<string, AbortController>;
+  // 错误校验
+  errorHandler: Error;
 
   constructor(config: CreateRequestConfig) {
     this.instance = axios.create(config);
@@ -42,6 +44,9 @@ class Request {
       },
       (err: any) => err
     );
+
+    // 错误校验
+    this.errorHandler = new Error();
   }
   request<T>(config: RequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
@@ -52,19 +57,13 @@ class Request {
       this.instance
         .request<any, T>(config)
         .then((res: any) => {
-          let errMsg = "";
-          // 内部错误校验
-          if (axiosErrorMap.has(res.code)) {
-            errMsg = `请求失败：${axiosErrorMap.get(res.code)}`;
-          }
-          // // 业务错误
-          // if (res.data.code !== '000') {
-          //   errMsg = `请求失败：${res.data.msg}`;
-          // }
+          if (this.errorHandler.axiosErrorCheck(res)) {
+            const jump = this.errorHandler.authCheck(res);
 
-          if (errMsg) {
-            reject(errMsg);
-            message.error(errMsg);
+            if (jump) {
+              window.location.href = "/login";
+            }
+
             return;
           }
 

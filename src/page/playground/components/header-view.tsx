@@ -1,11 +1,17 @@
 import { Button, message, Modal } from "antd";
 import { FC } from "react";
 import { EnginContext, plugins } from "@zxscls/engine";
+import { CPageDataType } from "@zxscls/model";
 
 const { DisplaySourceSchema } = plugins;
 
-const HeaderView: FC<{ ctx: EnginContext }> = (props) => {
-  const { ctx } = props;
+const HeaderView: FC<{ ctx: EnginContext; loading: boolean; handleBuild: (schema: CPageDataType) => void }> = (props) => {
+  const { ctx, loading, handleBuild } = props;
+
+  const buildApp = () => {
+    handleBuild(ctx.pluginManager.pageModel.export());
+  };
+
   return (
     <div
       style={{
@@ -112,7 +118,9 @@ const HeaderView: FC<{ ctx: EnginContext }> = (props) => {
       >
         Save
       </Button>
-      <Button type="primary">构建</Button>
+      <Button type="primary" className="ml-[8px]" loading={loading} onClick={buildApp}>
+        构建
+      </Button>
     </div>
   );
 };

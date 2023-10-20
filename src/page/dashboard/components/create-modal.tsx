@@ -32,7 +32,12 @@ const CreateModal: FC<CreateModalProps> = (props) => {
       message.success("创建工程成功！");
       close();
 
-      router(`/playground?projectId=${result.projectId}&projectName=${result.projectName}`);
+      router("/playground", {
+        state: {
+          projectId: result.projectId,
+          projectName: result.projectName,
+        },
+      });
     }
   };
 

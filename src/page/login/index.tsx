@@ -1,33 +1,22 @@
+import React from "react";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 import { fetch } from "@/service/request";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { LoginForm, ProFormText } from "@ant-design/pro-components";
-import React, { useState } from "react";
 import * as api from "@/service/api";
-import { message } from "antd";
-import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const router = useNavigate();
 
   const handleSubmit = async (values: any) => {
-    try {
-      // 登录
-      const result = await fetch({ url: api.login, method: "post", data: { username: values.username, password: values.password } });
-      if (result.success) {
-        message.success("登录成功！");
+    const result = await fetch({ url: api.login, method: "post", data: { username: values.username, password: values.password } });
 
-        window.localStorage.setItem("token", result.result.token);
+    if (result.success) {
+      message.success("登录成功！");
 
-        const urlParams = new URL(window.location.href).searchParams;
-        router(urlParams.get("redirect") || "/");
-      }
-    } catch (error) {
-      // const defaultLoginFailureMessage = intl.formatMessage({
-      //   id: 'pages.login.failure',
-      //   defaultMessage: '登录失败，请重试！',
-      // });
-      // console.log(error);
-      // message.error(defaultLoginFailureMessage);
+      window.localStorage.setItem("token", result.result.token);
+      router("/", { replace: true });
     }
   };
 
